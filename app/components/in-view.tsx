@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
 
 interface InViewProps {
   children: (inView: boolean) => React.ReactNode
@@ -28,13 +27,14 @@ export function InView({ children, triggerOnce = true, margin = "0px 0px -100px 
       { rootMargin: margin }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    const currentRef = ref.current
+    if (currentRef) {
+      observer.observe(currentRef)
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [triggerOnce, margin])

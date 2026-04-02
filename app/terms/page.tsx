@@ -20,21 +20,21 @@ export default function TermsPage() {
               <section className="space-y-4">
                 <h2 className="text-4xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block">1. Licensing</h2>
                 <p>
-                  "Things" is released under the **MIT License**. This means you are free to use it for personal and commercial projects, modify the code, and redistribute it. We only ask that you keep the original license notice.
+                  &quot;Things&quot; is released under the **MIT License**. This means you are free to use it for personal and commercial projects, modify the code, and redistribute it. We only ask that you keep the original license notice.
                 </p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-4xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block">2. Usage</h2>
                 <p>
-                  You are solely responsible for how you use these components. While we've built them to be accessible and robust, you should always audit your own implementation to ensure they meet your production standards.
+                  You are solely responsible for how you use these components. While we&apos;ve built them to be accessible and robust, you should always audit your own implementation to ensure they meet your production standards.
                 </p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-4xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block">3. No Warranty</h2>
                 <p>
-                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE AUTHORS OR COPYRIGHT HOLDERS SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY. 
+                  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE AUTHORS OR COPYRIGHT HOLDERS SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY. 
                 </p>
               </section>
 

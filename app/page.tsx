@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/app/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card"
 import { Input } from "@/app/components/ui/input"
 import { Switch } from "@/app/components/ui/switch"
 import { Slider } from "@/app/components/ui/slider"
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 import { Navbar } from "@/app/components/navbar"
 import { InView } from "@/app/components/in-view"
 import * as React from "react"
-import { ArrowRight, Zap, Palette, Accessibility, Github, BookOpen } from "lucide-react"
+import { ArrowRight, Palette, Accessibility, Github, BookOpen } from "lucide-react"
 
 export default function Home() {
   const [switchChecked, setSwitchChecked] = React.useState(true)
@@ -136,7 +136,16 @@ export default function Home() {
             <Card className="border-4 bg-[#A388EE] neobrutalism-shadow-lg group hover:-translate-y-2 transition-transform">
               <CardHeader>
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-lg border-4 border-black bg-white text-3xl neobrutalism-shadow-sm">
-                  <Zap className="h-10 w-10 fill-yellow-400 text-black" strokeWidth={3} />
+                  <svg
+                    className="h-10 w-10"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="32" height="32" fill="currentColor" />
+                    <rect x="6" y="6" width="20" height="20" fill="hsl(var(--background))" />
+                    <rect x="10" y="10" width="12" height="12" fill="currentColor"/>
+                  </svg>
                 </div>
                 <CardTitle className="text-3xl font-black uppercase underline decoration-4 decoration-black/20">Instant Deployment</CardTitle>
                 <CardDescription className="text-black font-bold text-lg leading-snug">
@@ -270,7 +279,7 @@ export default function Home() {
                   Things<span className="text-primary">.</span>
                 </Link>
                 <p className="text-2xl font-bold text-muted-foreground max-w-md leading-snug">
-                  The boldest toolkit for developers who aren't afraid to stand out. Built with precision and radical design.
+                  The boldest toolkit for developers who aren&apos;t afraid to stand out. Built with precision and radical design.
                 </p>
                 <div className="mt-8 flex gap-6">
                   <a href="https://github.com/marvlock/things" target="_blank" rel="noopener noreferrer" className="h-14 w-14 flex items-center justify-center border-4 border-black bg-white neobrutalism-shadow-sm hover:bg-[#56E3A6] transition-colors active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">

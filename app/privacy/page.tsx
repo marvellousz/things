@@ -20,14 +20,14 @@ export default function PrivacyPage() {
               <section className="space-y-4">
                 <h2 className="text-3xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block">1. Data Collection</h2>
                 <p>
-                  "Things" is a collection of open-source UI components. When you visit this website, we do not collect any personal data. We don't use cookies, and we don't track you across the web.
+                  &quot;Things&quot; is a collection of open-source UI components. When you visit this website, we do not collect any personal data. We don&apos;t use cookies, and we don&apos;t track you across the web.
                 </p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-3xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block">2. Local Storage</h2>
                 <p>
-                  Some of our components (like the search or theme switchers) may use your browser's local storage to remember your preferences. This data never leaves your machine.
+                  Some of our components (like the search or theme switchers) may use your browser&apos;s local storage to remember your preferences. This data never leaves your machine.
                 </p>
               </section>
 
