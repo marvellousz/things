@@ -51,9 +51,9 @@ export default function InstallationPage() {
             <TabsContent value="yarn">
               <div className="space-y-4">
                 <p className="text-sm font-bold opacity-80">Initialize shadcn:</p>
-                <CodeBlock code="npx shadcn@latest init" language="bash" />
+                <CodeBlock code="yarn dlx shadcn@latest init" language="bash" />
                 <p className="text-sm font-bold opacity-80">Add a component:</p>
-                <CodeBlock code="npx shadcn@latest add https://things.marvlock.dev/registry/ui/button.json" language="bash" />
+                <CodeBlock code="yarn dlx shadcn@latest add https://things.marvlock.dev/registry/ui/button.json" language="bash" />
               </div>
             </TabsContent>
             <TabsContent value="bun">

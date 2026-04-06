@@ -93,7 +93,7 @@ export function ComponentCode({ tsCode, jsCode, usageTs, usageJs, filename }: Co
                     <CodeBlock code={`bunx --bun shadcn@latest add https://things.marvlock.dev/registry/ui/${filename}.json`} language="bash" />
                   </TabsContent>
                   <TabsContent value="yarn">
-                    <CodeBlock code={`npx shadcn@latest add https://things.marvlock.dev/registry/ui/${filename}.json`} language="bash" />
+                    <CodeBlock code={`yarn dlx shadcn@latest add https://things.marvlock.dev/registry/ui/${filename}.json`} language="bash" />
                   </TabsContent>
                 </Tabs>
               </div>

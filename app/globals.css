@@ -224,6 +224,10 @@
     scrollbar-width: none;
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Custom Animations */
   @keyframes marquee {
     0% { transform: translateX(0); }

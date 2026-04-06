@@ -17,8 +17,7 @@ export default function ScrollAreaDocsPage() {
         <div className="prose prose-lg max-w-none space-y-6">
           <p>
             The Scroll Area component provides a custom-styled scrollable container.
-            It hides native scrollbars and provides a clean, consistent scrolling experience across browsers.
-            Built from scratch using React and native HTML elements. No dependencies on any UI library.
+            It uses native CSS scrollbar styling for maximum performance and compatibility while maintaining a unique neobrutalist aesthetic.
           </p>
 
           <ComponentCode 
@@ -34,75 +33,25 @@ interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
   ({ className, children, ...props }, ref) => {
-    const viewportRef = React.useRef<HTMLDivElement>(null)
-    const [showScrollbar, setShowScrollbar] = React.useState(false)
-
-    React.useEffect(() => {
-      const viewport = viewportRef.current
-      if (!viewport) return
-
-      const checkScroll = () => {
-        const hasScroll = viewport.scrollHeight > viewport.clientHeight
-        setShowScrollbar(hasScroll)
-      }
-
-      checkScroll()
-      viewport.addEventListener("scroll", checkScroll)
-      
-      const resizeObserver = new ResizeObserver(checkScroll)
-      resizeObserver.observe(viewport)
-
-      return () => {
-        viewport.removeEventListener("scroll", checkScroll)
-        resizeObserver.disconnect()
-      }
-    }, [])
-
     return (
       <div
         ref={ref}
-        className={cn("relative overflow-hidden", className)}
+        className={cn("relative overflow-auto", className)}
         {...props}
       >
-        <div
-          ref={viewportRef}
-          className="h-full w-full rounded-[inherit] overflow-y-scroll scrollbar-hide"
-        >
-          {children}
-        </div>
-        {showScrollbar && (
-          <ScrollBar orientation="vertical" />
-        )}
+        {children}
       </div>
     )
   }
 )
 ScrollArea.displayName = "ScrollArea"
 
-interface ScrollBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  orientation?: "vertical" | "horizontal"
-}
-
-const ScrollBar = React.forwardRef<HTMLDivElement, ScrollBarProps>(
-  ({ className, orientation = "vertical", ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "absolute right-0 top-0 z-10 flex touch-none select-none transition-colors",
-          orientation === "vertical" &&
-            "h-full w-2.5 border-l-2 border-foreground p-[1px]",
-          orientation === "horizontal" &&
-            "bottom-0 left-0 h-2.5 w-full flex-col border-t-2 border-foreground p-[1px]",
-          className
-        )}
-        {...props}
-      >
-        <div className="relative flex-1 rounded-full bg-foreground/30" />
-      </div>
-    )
-  }
-)
+const ScrollBar = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { orientation?: "vertical" | "horizontal" }
+>(({ className, orientation = "vertical", ...props }, ref) => {
+  return null
+})
 ScrollBar.displayName = "ScrollBar"
 
 export { ScrollArea, ScrollBar }`}
@@ -113,45 +62,13 @@ import { cn } from "@/lib/utils"
 
 const ScrollArea = React.forwardRef(
   ({ className, children, ...props }, ref) => {
-    const viewportRef = React.useRef(null)
-    const [showScrollbar, setShowScrollbar] = React.useState(false)
-
-    React.useEffect(() => {
-      const viewport = viewportRef.current
-      if (!viewport) return
-
-      const checkScroll = () => {
-        const hasScroll = viewport.scrollHeight > viewport.clientHeight
-        setShowScrollbar(hasScroll)
-      }
-
-      checkScroll()
-      viewport.addEventListener("scroll", checkScroll)
-      
-      const resizeObserver = new ResizeObserver(checkScroll)
-      resizeObserver.observe(viewport)
-
-      return () => {
-        viewport.removeEventListener("scroll", checkScroll)
-        resizeObserver.disconnect()
-      }
-    }, [])
-
     return (
       <div
         ref={ref}
-        className={cn("relative overflow-hidden", className)}
+        className={cn("relative overflow-auto", className)}
         {...props}
       >
-        <div
-          ref={viewportRef}
-          className="h-full w-full rounded-[inherit] overflow-y-scroll scrollbar-hide"
-        >
-          {children}
-        </div>
-        {showScrollbar && (
-          <ScrollBar orientation="vertical" />
-        )}
+        {children}
       </div>
     )
   }
@@ -160,22 +77,7 @@ ScrollArea.displayName = "ScrollArea"
 
 const ScrollBar = React.forwardRef(
   ({ className, orientation = "vertical", ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "absolute right-0 top-0 z-10 flex touch-none select-none transition-colors",
-          orientation === "vertical" &&
-            "h-full w-2.5 border-l-2 border-foreground p-[1px]",
-          orientation === "horizontal" &&
-            "bottom-0 left-0 h-2.5 w-full flex-col border-t-2 border-foreground p-[1px]",
-          className
-        )}
-        {...props}
-      >
-        <div className="relative flex-1 rounded-full bg-foreground/30" />
-      </div>
-    )
+    return null
   }
 )
 ScrollBar.displayName = "ScrollBar"
@@ -258,4 +160,3 @@ function MyComponent() {
     </div>
   )
 }
-

@@ -42,7 +42,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
         <aside
           ref={ref}
           className={cn(
-            "flex flex-col border-r-2 border-foreground bg-background transition-all duration-300",
+            "flex flex-col border-r-2 border-foreground bg-background transition-all duration-300 overflow-x-hidden",
             collapsed ? "w-16" : "w-64",
             className
           )}
@@ -64,7 +64,11 @@ const SidebarHeader = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn("flex items-center border-b-2 border-foreground", collapsed ? "p-2" : "p-4", className)}
+      className={cn(
+        "flex items-center border-b-2 border-foreground",
+        collapsed ? "p-2 justify-center" : "p-4",
+        className
+      )}
       {...props}
     />
   )
@@ -84,23 +88,25 @@ const SidebarBrand = React.forwardRef<HTMLDivElement, SidebarBrandProps>(
     return (
       <div
         ref={ref}
-        className={cn("flex items-center gap-3", className)}
+        className={cn("flex items-center gap-3", collapsed && "justify-center", className)}
         {...props}
       >
         {icon && (
-          <div className={cn("flex-shrink-0", collapsed && "mx-auto")}>
+          <div className={cn("flex-shrink-0")}>
             {icon}
           </div>
         )}
         {!collapsed && (
-          <div className="flex-1 min-w-0">
-            <div className="font-bold text-sm truncate">{title}</div>
-            {subtitle && (
-              <div className="text-xs text-muted-foreground truncate">{subtitle}</div>
-            )}
-          </div>
+          <>
+            <div className="flex-1 min-w-0">
+              <div className="font-bold text-sm truncate">{title}</div>
+              {subtitle && (
+                <div className="text-xs text-muted-foreground truncate">{subtitle}</div>
+              )}
+            </div>
+            {children}
+          </>
         )}
-        {children}
       </div>
     )
   }
@@ -189,9 +195,9 @@ const SidebarMenuButton = React.forwardRef<HTMLButtonElement, SidebarMenuButtonP
 
     const buttonClassName = cn(
       "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-bold transition-colors",
-      "hover:bg-accent hover:text-accent-foreground",
+      "hover:bg-accent hover:text-accent-foreground text-foreground",
       isActive && "bg-accent text-accent-foreground",
-      collapsed && "justify-center px-2",
+      collapsed && "justify-center px-0",
       className
     )
 
@@ -200,7 +206,7 @@ const SidebarMenuButton = React.forwardRef<HTMLButtonElement, SidebarMenuButtonP
         className: cn(buttonClassName, children.props.className),
         ref,
         ...props,
-      })
+      } as any)
     }
 
     return (
@@ -210,15 +216,15 @@ const SidebarMenuButton = React.forwardRef<HTMLButtonElement, SidebarMenuButtonP
         {...props}
       >
         {icon && (
-          <span className={cn("flex-shrink-0", collapsed && "mx-auto")}>
+          <span className={cn("flex-shrink-0 flex items-center justify-center", collapsed ? "w-full" : "w-4")}>
             {icon}
           </span>
         )}
         {!collapsed && (
           <>
-            <span className="flex-1 text-left">{children}</span>
-            {badge && <span className="ml-auto">{badge}</span>}
-            {rightIcon && <span className="ml-auto">{rightIcon}</span>}
+            <span className="flex-1 text-left truncate">{children}</span>
+            {badge && <span className="ml-auto flex-shrink-0">{badge}</span>}
+            {rightIcon && <span className="ml-auto flex-shrink-0">{rightIcon}</span>}
           </>
         )}
       </button>
@@ -285,12 +291,39 @@ const SidebarFooter = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn("border-t-2 border-foreground", collapsed ? "p-2" : "p-4", className)}
+      className={cn(
+        "flex items-center border-t-2 border-foreground",
+        collapsed ? "p-2 justify-center" : "p-4",
+        className
+      )}
       {...props}
     />
   )
 })
 SidebarFooter.displayName = "SidebarFooter"
+
+interface SidebarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  hideWhenCollapsed?: boolean
+}
+
+const SidebarGroup = React.forwardRef<HTMLDivElement, SidebarGroupProps>(
+  ({ className, hideWhenCollapsed = true, children, ...props }, ref) => {
+    const { collapsed } = useSidebar()
+
+    if (collapsed && hideWhenCollapsed) return null
+
+    return (
+      <div
+        ref={ref}
+        className={cn("space-y-4", className)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+SidebarGroup.displayName = "SidebarGroup"
 
 const SidebarTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -303,7 +336,7 @@ const SidebarTrigger = React.forwardRef<
       ref={ref}
       onClick={() => setCollapsed(!collapsed)}
       className={cn(
-        "flex h-8 w-8 items-center justify-center rounded-md border-2 border-foreground bg-background transition-colors hover:bg-accent hover:text-accent-foreground neobrutalism-shadow-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none",
+        "flex h-8 w-8 items-center justify-center rounded-md border-2 border-foreground bg-background transition-colors hover:bg-accent hover:text-accent-foreground neobrutalism-shadow-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none font-bold",
         className
       )}
       {...props}
@@ -318,7 +351,7 @@ const SidebarTrigger = React.forwardRef<
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M4 6h16M4 12h16M4 18h16"
+          d={collapsed ? "M4 6h16M4 12h16M4 18h16" : "M4 6h16M4 12h16M4 18h16"}
         />
       </svg>
       <span className="sr-only">Toggle sidebar</span>
@@ -332,6 +365,7 @@ export {
   SidebarHeader,
   SidebarBrand,
   SidebarContent,
+  SidebarGroup,
   SidebarSection,
   SidebarMenu,
   SidebarMenuItem,

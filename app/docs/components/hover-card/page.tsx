@@ -14,7 +14,7 @@ export default function HoverCardDocsPage() {
   return (
     <div className="min-h-screen bg-background py-8 md:py-12 pr-8 md:pr-12">
       <div className="mx-auto max-w-3xl pl-8 md:pl-12">
-        <h1 className="mb-4 text-5xl font-bold uppercase tracking-tighter">Hover Card</h1>
+        <h1 className="mb-4 text-5xl font-bold">Hover Card</h1>
         <p className="mb-8 text-xl text-muted-foreground">
           For sighted users to preview content available behind a link.
         </p>
