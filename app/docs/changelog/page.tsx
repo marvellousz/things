@@ -13,8 +13,22 @@ export default function ChangelogPage() {
         <div className="prose prose-lg max-w-none space-y-6">
           <div className="space-y-4">
             <div className="rounded-lg border-2 border-foreground p-6 neobrutalism-shadow">
-              <h3 className="text-2xl font-bold mb-2">v0.5.0</h3>
+              <h3 className="text-2xl font-bold mb-2">v0.5.1</h3>
               <p className="text-muted-foreground mb-4">Current version</p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Fixed Sidebar layout stability and centering in collapsed state</li>
+                <li>Added SidebarGroup component to manage visibility of non-sidebar elements when collapsed</li>
+                <li>Rewrote Scroll Area to use native styled scrollbars, fixing touch/wheel scrolling and accessibility</li>
+                <li>Unified Hover Card documentation heading with title-case capitalization</li>
+                <li>Updated package manager installation guides to correctly reflect yarn dlx workflow</li>
+                <li>Added AI context buttons for copying code and page context into AI tools</li>
+                <li>Cleaned up docs navigation by removing the Resources page and updating related links</li>
+                <li>Adjusted docs layout and responsive navbar spacing for cleaner page alignment</li>
+              </ul>
+            </div>
+            <div className="rounded-lg border-2 border-foreground p-6 neobrutalism-shadow">
+              <h3 className="text-2xl font-bold mb-2">v0.5.0</h3>
+              <p className="text-muted-foreground mb-4">Previous version</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Fixed critical build errors in Hover Card, Marquee, and Scroll Area docs</li>
                 <li>Overhauled Resizable component logic using DOM-neighbor detection for robust multi-panel support</li>
@@ -104,9 +118,9 @@ export default function ChangelogPage() {
         </div>
 
         <div className="mt-12 flex items-center justify-between border-t-2 border-foreground pt-8">
-          <Link href="/docs/resources">
+          <Link href="/docs/installation">
             <Button variant="outline" size="lg">
-              ← Resources
+              ← Installation
             </Button>
           </Link>
           <div></div>
